@@ -3,10 +3,10 @@ pandas
 numpy
 matplotlib
 plotly
-openai
 reportlab
 python-dotenv
 openpyxl
 sqlalchemy
 statsmodels
+openai==0.28
 
