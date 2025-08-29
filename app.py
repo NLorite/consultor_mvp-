@@ -235,7 +235,7 @@ def update_action_status(action_id, new_status):
 # --------------------
 # STREAMLIT UI
 # --------------------
-st.title("Orygo Consultinh")
+st.title("Orygo Consulting")
 
 # Sidebar: upload / sample / actions
 st.sidebar.header("1) Datos")
