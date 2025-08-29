@@ -18,7 +18,7 @@ from reportlab.lib.pagesizes import A4
 # --------------------
 # CONFIG
 # --------------------
-st.set_page_config(page_title="Consultor Digital Industrial - MVP", layout="wide")
+st.set_page_config(page_title="Orygo Consulting", layout="wide")
 
 # Lee API key desde variable de entorno o Streamlit secrets
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", None)
