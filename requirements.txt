@@ -6,4 +6,5 @@ plotly
 openai
 reportlab
 python-dotenv
+openpyxl
 sqlalchemy
