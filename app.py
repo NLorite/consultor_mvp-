@@ -20,35 +20,34 @@ st.markdown("Dashboard interactivo + Chatbot consultor para análisis de datos i
 # --- DASHBOARD ---
 st.subheader("Indicadores Clave de Producción")
 
-col1, col2, col3 = st.columns(3)
-col1.metric("Promedio OEE", round(df["OEE"].mean(), 2))
-col2.metric("Inventario medio (días)", round(df["Inventario_días"].mean(), 2))
-col3.metric("Scrap medio (%)", round(df["Scrap_%"].mean(), 2))
-
 # --- VISUALIZACIONES ---
 st.subheader("📈 Análisis Visual")
 
-tab1, tab2, tab3, tab4 = st.tabs(["OEE vs Lote", "Evolución OEE", "Inventario", "Scrap"])
+# 1. Evolución del OEE
+st.markdown("### Evolución del OEE")
+fig1 = px.line(df, x="Fecha", y="OEE", color="Referencia",
+               title="OEE vs Fecha")
+st.plotly_chart(fig1, use_container_width=True)
 
-with tab1:
-    fig1 = px.scatter(df, x="Tamaño_lote", y="OEE", color="Referencia",
-                      trendline="ols", title="Tamaño de lote vs OEE")
-    st.plotly_chart(fig1, use_container_width=True)
+# 2. Evolución del Scrap
+st.markdown("### Scrap (%)")
+fig2 = px.line(df, x="Fecha", y="Scrap_%", color="Referencia",
+               title="Scrap vs Fecha")
+st.plotly_chart(fig2, use_container_width=True)
 
-with tab2:
-    fig2 = px.line(df, x="Fecha", y="OEE", color="Referencia",
-                   title="Evolución del OEE")
-    st.plotly_chart(fig2, use_container_width=True)
+# 3. Media del Tamaño de lote por fecha
+st.markdown("### Media del Tamaño de Lote")
+df_lote = df.groupby("Fecha", as_index=False)["Tamaño_lote"].mean()
+fig3 = px.line(df_lote, x="Fecha", y="Tamaño_lote",
+               title="Media Tamaño de Lote vs Fecha")
+st.plotly_chart(fig3, use_container_width=True)
 
-with tab3:
-    fig3 = px.line(df, x="Fecha", y="Inventario_días", color="Referencia",
-                   title="Inventario en días")
-    st.plotly_chart(fig3, use_container_width=True)
-
-with tab4:
-    fig4 = px.bar(df, x="Fecha", y="Scrap_%", color="Referencia",
-                  title="Scrap (%) por referencia")
-    st.plotly_chart(fig4, use_container_width=True)
+# 4. Media del Inventario por fecha
+st.markdown("### Media del Inventario")
+df_inv = df.groupby("Fecha", as_index=False)["Inventario_días"].mean()
+fig4 = px.line(df_inv, x="Fecha", y="Inventario_días",
+               title="Media Inventario (días) vs Fecha")
+st.plotly_chart(fig4, use_container_width=True)
 
 # --- CHATBOT ---
 st.subheader("🤖 Consultor Virtual")
