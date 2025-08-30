@@ -1,4 +1,4 @@
-# Consultor MVP 🤖📊
+# Consultor MVP
 
 **Consultor MVP** es una aplicación web desarrollada con **Streamlit** que combina:
 - Dashboards interactivos de KPIs industriales.
